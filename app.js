@@ -7,8 +7,8 @@ const MindsDB = require("mindsdb-js-sdk");
 
 // MindsDB setup
 const user = {
-	user: process.env.MINDSDB_USER || "runwayhacksdemo2@gmail.com",
-	password: process.env.MINDSDB_PASS || "Courier1@",
+	user: process.env.MINDSDB_USER,
+	password: process.env.MINDSDB_PASS,
 };
 
 const connectToMindsDB = async (user) => {
@@ -66,7 +66,6 @@ app.get("/", function (req, res) {
 // Text summarisation route
 app.post("/summary", async function (req, res) {
 	let text = req.body.text;
-    console.log(`Text input: ${text}`);
 	try {
 		await connectToMindsDB(user);
 		let summaryText = await getSummarisedText(text);
